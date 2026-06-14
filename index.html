@@ -1,756 +1,873 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aïvo Rodolphe - Full-Stack Developer & Growth Strategist</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rodolphe Aïvo — Positioning, GTM & Fullstack Execution for B2B startups and premium service firms.">
+  <title>Rodolphe Aïvo | Positioning, GTM & Fullstack Execution</title>
+  <style>
+    :root {
+      --bg: #091119;
+      --bg-2: #0f1b27;
+      --surface: rgba(17, 28, 40, 0.76);
+      --line: rgba(223, 232, 240, 0.12);
+      --text: #eef4f7;
+      --muted: #9caebb;
+      --accent: #8ee3ff;
+      --accent-2: #d7c0ff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      --body: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(142, 227, 255, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(215, 192, 255, 0.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, #0c1622 100%);
+    }
 
-        /* Header/Navigation */
-        header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .page-shell {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-        nav .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00d4ff;
-        }
+    .site-header {
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      margin-top: 18px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(8, 14, 21, 0.72);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
+    .brand {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: .03em;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    .site-nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
 
-        nav a:hover {
-            color: #00d4ff;
-        }
+    .site-nav a { color: var(--muted); font-size: .94rem; }
+    .site-nav a:hover { color: var(--text); }
 
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
+    .lang-switcher {
+      display: inline-flex;
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
 
-        .hero-content h1 {
-            font-size: 44px;
-            margin-bottom: 20px;
-            color: #1a1a2e;
-            line-height: 1.2;
-        }
+    .lang-switcher button {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
 
-        .hero-content .subtitle {
-            font-size: 20px;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+    .lang-switcher button.active {
+      background: rgba(142, 227, 255, 0.12);
+      color: var(--text);
+    }
 
-        .hero-content p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
+    .page-main { padding: 60px 0 72px; }
 
-        .hero-image {
-            text-align: center;
-        }
+    .hero-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(280px, .92fr);
+      gap: 32px;
+      align-items: stretch;
+    }
 
-        .hero-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+    .panel,
+    .hero-copy,
+    .hero-panel,
+    .info-card,
+    .niche-card,
+    .offer-card,
+    .proof-item,
+    .case-card,
+    .about-panel,
+    .contact-form,
+    .contact-aside {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+    }
 
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
+    .hero-copy { padding: 42px; border-radius: 36px; }
+    .hero-panel { padding: 24px; border-radius: 36px; }
 
-        .btn {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-        }
+    .eyebrow,
+    .section-kicker,
+    .offer-price,
+    .case-niche,
+    .contact-aside__label {
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      color: var(--accent);
+      font-size: .78rem;
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-        }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 400;
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,212,255,0.3);
-        }
+    h1 {
+      margin-top: 14px;
+      font-size: clamp(2.7rem, 5vw, 5.2rem);
+      line-height: .95;
+    }
 
-        .btn-secondary {
-            background: white;
-            color: #1a1a2e;
-            border: 2px solid #1a1a2e;
-        }
+    h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.04;
+    }
 
-        .btn-secondary:hover {
-            background: #1a1a2e;
-            color: white;
-        }
+    h3 { font-size: 1.6rem; line-height: 1.1; }
 
-        /* Services Section */
-        .services {
-            background: white;
-            padding: 80px 20px;
-            margin: 40px 0;
-        }
+    .hero-subtitle,
+    .hero-description,
+    .section-heading p,
+    .info-card p,
+    .niche-card p,
+    .offer-card p,
+    .proof-item p,
+    .case-card p,
+    .about-panel p,
+    .contact-note,
+    .site-footer p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
 
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .hero-subtitle {
+      margin-top: 18px;
+      font-size: 1.2rem;
+      color: var(--text);
+      max-width: 32rem;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #1a1a2e;
-        }
+    .hero-description { margin-top: 18px; max-width: 42rem; }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
 
-        .service-card {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 10px;
-            border-left: 4px solid #00d4ff;
-            transition: all 0.3s;
-        }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
 
-        .service-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
-        }
+    .button:hover { transform: translateY(-2px); }
+    .button--primary {
+      background: linear-gradient(135deg, rgba(142, 227, 255, 0.18), rgba(215, 192, 255, 0.18));
+      border-color: rgba(142, 227, 255, 0.28);
+      color: var(--text);
+    }
+    .button--secondary {
+      border-color: var(--line);
+      color: var(--text);
+    }
 
-        .service-card h3 {
-            color: #1a1a2e;
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
+    .metric-row,
+    .niche-focus,
+    .offer-points,
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+    }
 
-        .service-card p {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
+    .metric-row li,
+    .niche-focus li,
+    .offer-points li,
+    .stack-list li {
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-size: .92rem;
+    }
 
-        .service-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    .hero-panel__frame {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      min-height: 100%;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
 
-        .service-card li {
-            color: #666;
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
+    .hero-panel__glow {
+      position: absolute;
+      inset: auto 20% -20% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142,227,255,.22), transparent 62%);
+    }
 
-        .service-card li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #00d4ff;
-            font-weight: bold;
-        }
+    .hero-panel__column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-        /* Skills Section */
-        .skills {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 80px 20px;
-        }
+    .hero-panel__column span {
+      display: block;
+      padding: 20px 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+    }
 
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .hero-panel__column--accent span {
+      color: var(--text);
+      border-color: rgba(142,227,255,.22);
+    }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
+    .section { padding-top: 88px; }
+    .section-heading { max-width: 760px; margin-bottom: 28px; }
+    .section-heading h2 { margin: 12px 0 14px; }
 
-        .skill-category h3 {
-            color: #00d4ff;
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
+    .card-grid,
+    .niche-grid,
+    .offer-grid,
+    .proof-list,
+    .case-grid,
+    .contact-layout {
+      display: grid;
+      gap: 18px;
+    }
 
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .card-grid, .proof-list { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .niche-grid, .offer-grid, .case-grid, .contact-layout { grid-template-columns: repeat(2, minmax(0,1fr)); }
 
-        .skill-tag {
-            background: rgba(0,212,255,0.2);
-            border: 1px solid #00d4ff;
-            color: #00d4ff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
+    .info-card,
+    .niche-card,
+    .offer-card,
+    .proof-item,
+    .case-card,
+    .about-panel,
+    .contact-form,
+    .contact-aside { padding: 26px; }
 
-        /* Projects Section */
-        .projects {
-            background: white;
-            padding: 80px 20px;
-        }
+    .niche-meta { margin: 0 0 12px; color: var(--text) !important; }
+    .offer-price { margin-bottom: 10px; }
 
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .case-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
+    .case-visual {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      min-height: 180px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at center, rgba(142,227,255,.14), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
 
-        .project-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
+    .case-visual::before,
+    .case-visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(142,227,255,.22);
+      border-radius: 50%;
+    }
 
-        .project-card:hover {
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            transform: translateY(-10px);
-        }
+    .case-visual::before { width: 140px; height: 140px; }
+    .case-visual::after { width: 90px; height: 90px; }
 
-        .project-header {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            padding: 30px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-        }
+    .case-visual-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
 
-        .project-header h3 {
-            font-size: 22px;
-        }
+    .case-visual span {
+      position: relative;
+      z-index: 1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(8,14,21,.74);
+      border: 1px solid var(--line);
+    }
 
-        .project-body {
-            padding: 30px;
-        }
+    .about-panel { max-width: 760px; }
+    .about-panel p + p { margin-top: 16px; }
 
-        .project-body p {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
 
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px 16px;
+      color: var(--text);
+      background: rgba(255,255,255,.03);
+    }
 
-        .tech-tag {
-            background: #e8f4f8;
-            color: #0099cc;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-        }
+    .contact-form textarea { resize: vertical; }
+    .contact-aside { display: flex; flex-direction: column; gap: 14px; }
+    .contact-success { color: var(--accent); }
+    .site-footer { padding: 0 0 56px; }
+    .site-footer p { max-width: 620px; }
 
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
+    @media (max-width: 980px) {
+      .site-header,
+      .hero-section,
+      .card-grid,
+      .niche-grid,
+      .offer-grid,
+      .proof-list,
+      .case-grid,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .site-header { position: static; }
+      .site-nav { display: none; }
+      .hero-copy, .hero-panel { padding: 28px; }
+    }
 
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .contact p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin: 40px 0;
-        }
-
-        .contact-link {
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .contact-link:hover {
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background: #0f0f1e;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 40px 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 32px;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-        }
-    </style>
+    @media (max-width: 720px) {
+      .page-shell { width: min(100% - 20px, 1200px); }
+      .site-header { grid-template-columns: 1fr; justify-items: start; }
+      .hero-cta-row { flex-direction: column; }
+      .button { width: 100%; }
+    }
+  </style>
 </head>
 <body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top">Rodolphe Aïvo</a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul id="nav-list"></ul>
+      </nav>
+      <div class="lang-switcher" aria-label="Language switcher">
+        <button id="lang-fr" type="button">FR</button>
+        <button id="lang-en" type="button">EN</button>
+      </div>
+    </header>
 
-<!-- Navigation -->
-<header>
-    <nav>
-        <div class="logo">Aïvo</div>
-        <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Full-Stack Developer & Growth Strategist</h1>
-        <p class="subtitle">Building scalable solutions with code, AI, and data-driven strategies</p>
-        <p>I help startups and businesses accelerate growth through intelligent automation, AI-powered content, and performance marketing. From backend systems to customer acquisition—I deliver measurable results.</p>
-        <div class="cta-buttons">
-            <a href="#contact" class="btn btn-primary">Get in Touch</a>
-            <a href="https://www.linkedin.com/in/rodolphe-aivo-748152412" class="btn btn-secondary">LinkedIn Profile</a>
+    <main class="page-main" id="top">
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p class="hero-subtitle" id="hero-subtitle"></p>
+          <p class="hero-description" id="hero-description"></p>
+          <div class="hero-cta-row">
+            <a class="button button--primary" id="hero-primary" href="#portfolio"></a>
+            <a class="button button--secondary" id="hero-secondary" href="#contact"></a>
+          </div>
+          <ul class="metric-row" id="hero-metrics"></ul>
         </div>
-    </div>
-    <div class="hero-image">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 250px; height: 250px; filter: drop-shadow(0 15px 40px rgba(0,0,0,0.2));">
-            <defs>
-                <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            
-            <!-- AR Background Text -->
-            <text x="100" y="115" font-size="90" font-weight="bold" text-anchor="middle" fill="#00d4ff" opacity="0.08" font-family="Arial, sans-serif">AR</text>
-            
-            <!-- Outer Circle -->
-            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#heroGrad)" stroke-width="3"/>
-            <circle cx="100" cy="100" r="92" fill="none" stroke="url(#heroGrad)" stroke-width="1" opacity="0.5"/>
-            
-            <!-- Inner Circle Background -->
-            <circle cx="100" cy="100" r="80" fill="#1a1a2e" opacity="0.3"/>
-            
-            <!-- VISION - Top (Eye/Insight) -->
-            <g transform="translate(100, 35)">
-                <!-- Eye circle -->
-                <circle cx="0" cy="0" r="12" fill="none" stroke="#00d4ff" stroke-width="2"/>
-                <!-- Eye pupil -->
-                <circle cx="0" cy="0" r="6" fill="#00d4ff"/>
-                <!-- Light reflection -->
-                <circle cx="2" cy="-2" r="2" fill="white" opacity="0.7"/>
-            </g>
-            <text x="100" y="62" font-size="11" font-weight="bold" text-anchor="middle" fill="#00d4ff" letter-spacing="1">VISION</text>
-            
-            <!-- PRECISION - Right (Target/Accuracy) -->
-            <g transform="translate(150, 100)">
-                <!-- Target circles -->
-                <circle cx="0" cy="0" r="14" fill="none" stroke="#00d4ff" stroke-width="2"/>
-                <circle cx="0" cy="0" r="9" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
-                <circle cx="0" cy="0" r="4" fill="#00d4ff"/>
-            </g>
-            <text x="150" y="128" font-size="11" font-weight="bold" text-anchor="middle" fill="#00d4ff" letter-spacing="1">PRÉCISION</text>
-            
-            <!-- STRATEGY - Bottom-Left (Plan/Direction) -->
-            <g transform="translate(100, 155)">
-                <!-- Strategy lines (ascending) -->
-                <line x1="-8" y1="8" x2="-8" y2="0" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
-                <line x1="0" y1="8" x2="0" y2="-6" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
-                <line x1="8" y1="8" x2="8" y2="-12" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
-                <!-- Arrow head -->
-                <path d="M 8 -12 L 12 -8 L 4 -8" fill="#00d4ff"/>
-            </g>
-            <text x="100" y="183" font-size="11" font-weight="bold" text-anchor="middle" fill="#00d4ff" letter-spacing="1">STRATÉGIE</text>
-            
-            <!-- Center Circle Accent -->
-            <circle cx="100" cy="100" r="25" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6" stroke-dasharray="3,2"/>
-        </svg>
-    </div>
-</section>
-
-<!-- Services Section -->
-<section id="services" class="services">
-    <div class="services-container">
-        <h2 class="section-title">What I Do</h2>
-        
-        <div class="services-grid">
-            <!-- Service 1 -->
-            <div class="service-card">
-                <h3>🤖 AI & Automation</h3>
-                <p>Leverage cutting-edge AI tools (Claude, ChatGPT) to automate workflows, generate high-quality content at scale, and build intelligent systems that save time and resources.</p>
-                <ul>
-                    <li>AI content generation & optimization</li>
-                    <li>Workflow automation with LLMs</li>
-                    <li>Intelligent prompt engineering</li>
-                    <li>AI-powered data analysis</li>
-                </ul>
+        <div class="hero-panel">
+          <div class="hero-panel__frame">
+            <div class="hero-panel__glow"></div>
+            <div class="hero-panel__column">
+              <span>Offer</span>
+              <span>Message</span>
+              <span>Funnel</span>
             </div>
-
-            <!-- Service 2 -->
-            <div class="service-card">
-                <h3>📈 Growth Marketing</h3>
-                <p>Design and execute multi-channel growth strategies that drive user acquisition, conversion, and revenue. From LinkedIn outreach to email campaigns, I optimize every touchpoint.</p>
-                <ul>
-                    <li>Lead generation & nurturing</li>
-                    <li>LinkedIn & email strategies</li>
-                    <li>A/B testing & optimization</li>
-                    <li>Performance analytics & reporting</li>
-                </ul>
+            <div class="hero-panel__column hero-panel__column--accent">
+              <span>Build</span>
+              <span>Ship</span>
+              <span>Convert</span>
             </div>
-
-            <!-- Service 3 -->
-            <div class="service-card">
-                <h3>💻 Full-Stack Development</h3>
-                <p>Build robust, scalable web applications from frontend to backend. I create solutions that are fast, secure, and user-friendly—ready for production.</p>
-                <ul>
-                    <li>Frontend: HTML, CSS, JavaScript, React</li>
-                    <li>Backend: PHP, Node.js, Python</li>
-                    <li>Database: MySQL, SQL, PostgreSQL</li>
-                    <li>API development & integration</li>
-                </ul>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="service-card">
-                <h3>📧 Email & Content Marketing</h3>
-                <p>Create compelling email sequences, landing pages, and content that converts. Every piece is optimized for engagement and results.</p>
-                <ul>
-                    <li>Email sequence design</li>
-                    <li>Landing page copywriting</li>
-                    <li>Content strategy & creation</li>
-                    <li>Conversion rate optimization</li>
-                </ul>
-            </div>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
-<!-- Skills Section -->
-<section id="skills" class="skills">
-    <div class="skills-container">
-        <h2 class="section-title">Technical Expertise</h2>
-        
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Frontend</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Responsive Design</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Backend</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">REST APIs</span>
-                    <span class="skill-tag">Server Architecture</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Database</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">Data Modeling</span>
-                    <span class="skill-tag">Query Optimization</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Marketing & AI</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Claude (LLM)</span>
-                    <span class="skill-tag">ChatGPT</span>
-                    <span class="skill-tag">Growth Strategy</span>
-                    <span class="skill-tag">A/B Testing</span>
-                    <span class="skill-tag">Analytics</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Tools & Platforms</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">Webflow</span>
-                    <span class="skill-tag">HubSpot</span>
-                    <span class="skill-tag">Google Ads</span>
-                    <span class="skill-tag">LinkedIn</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Soft Skills</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Problem Solving</span>
-                    <span class="skill-tag">Autonomous</span>
-                    <span class="skill-tag">Fast Execution</span>
-                    <span class="skill-tag">Data-Driven</span>
-                    <span class="skill-tag">Bilingual (FR/EN)</span>
-                </div>
-            </div>
+      <section id="positionnement" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Positioning</p>
+          <h2 id="positioning-title"></h2>
+          <p id="positioning-intro"></p>
         </div>
-    </div>
-</section>
+        <div class="card-grid" id="positioning-grid"></div>
+      </section>
 
-<!-- Projects Section -->
-<section id="projects" class="projects">
-    <div class="projects-container">
-        <h2 class="section-title">Featured Projects</h2>
-        
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>AI Content Generator Platform</h3>
-                </div>
-                <div class="project-body">
-                    <p>Built a full-stack platform that generates optimized content across multiple formats (LinkedIn posts, emails, landing pages) using Claude API integration.</p>
-                    <p><strong>Results:</strong> Reduced content creation time by 75% for clients</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Claude API</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>Growth Marketing Automation</h3>
-                </div>
-                <div class="project-body">
-                    <p>Designed and executed multi-channel growth campaigns combining LinkedIn outreach, email sequences, and landing page optimization for SaaS startups.</p>
-                    <p><strong>Results:</strong> 250+ qualified leads generated, 12% conversion rate</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">LinkedIn API</span>
-                        <span class="tech-tag">HubSpot</span>
-                        <span class="tech-tag">A/B Testing</span>
-                        <span class="tech-tag">Analytics</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>E-Commerce Platform</h3>
-                </div>
-                <div class="project-body">
-                    <p>Full-stack e-commerce solution with user authentication, product catalog management, shopping cart, and payment integration.</p>
-                    <p><strong>Results:</strong> 50+ SKU management, 99.9% uptime</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Payment Gateway</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>Email Marketing Automation</h3>
-                </div>
-                <div class="project-body">
-                    <p>Built automated email sequences with AI-powered content personalization and behavioral triggers for customer retention and expansion.</p>
-                    <p><strong>Results:</strong> 35% open rate, 8% click-through rate</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Email Marketing</span>
-                        <span class="tech-tag">Automation</span>
-                        <span class="tech-tag">AI Copywriting</span>
-                        <span class="tech-tag">Analytics</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>Landing Page Optimizer</h3>
-                </div>
-                <div class="project-body">
-                    <p>Created high-conversion landing pages with A/B testing framework and real-time optimization based on user behavior data.</p>
-                    <p><strong>Results:</strong> 15% improvement in conversion rates</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Webflow</span>
-                        <span class="tech-tag">Copywriting</span>
-                        <span class="tech-tag">A/B Testing</span>
-                        <span class="tech-tag">Figma</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>Performance Marketing Dashboard</h3>
-                </div>
-                <div class="project-body">
-                    <p>Developed real-time analytics dashboard tracking campaign performance, ROI, and user acquisition metrics across multiple channels.</p>
-                    <p><strong>Results:</strong> 40% faster decision-making for marketing teams</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">REST APIs</span>
-                        <span class="tech-tag">Data Visualization</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
-                </div>
-            </div>
+      <section id="niches" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Focus</p>
+          <h2 id="niches-title"></h2>
+          <p id="niches-intro"></p>
         </div>
-    </div>
-</section>
+        <div class="niche-grid" id="niches-grid"></div>
+      </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="contact-container">
-        <h2>Ready to Work Together?</h2>
-        <p>Let's discuss how I can help you grow, build, and scale. Reach out for a consultation.</p>
-        
-        <div class="contact-links">
-            <a href="mailto:rodolpheaivo@gmail.com" class="contact-link">📧 rodolpheaivo@gmail.com</a>
-            <a href="tel:+22901539623/46" class="contact-link">📱 +229 0153962346</a>
-            <a href="https://www.linkedin.com/in/rodolphe-aivo-748152412" class="contact-link">💼 LinkedIn</a>
+      <section id="offres" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Offers</p>
+          <h2 id="offers-title"></h2>
+          <p id="offers-intro"></p>
         </div>
+        <div class="offer-grid" id="offers-grid"></div>
+      </section>
 
-        <a href="mailto:rodolpheaivo@gmail.com" class="btn btn-primary" style="margin-top: 20px;">Start a Project</a>
-    </div>
-</section>
+      <section id="preuves" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Proof</p>
+          <h2 id="proof-title"></h2>
+          <p id="proof-intro"></p>
+        </div>
+        <div class="proof-list" id="proof-grid"></div>
+      </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2026 Aïvo Rodolphe. Full-Stack Developer & Growth Strategist. All rights reserved.</p>
-</footer>
+      <section id="portfolio" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Portfolio</p>
+          <h2 id="portfolio-title"></h2>
+          <p id="portfolio-intro"></p>
+        </div>
+        <div class="case-grid" id="portfolio-grid"></div>
+      </section>
 
+      <section id="about" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">About</p>
+          <h2 id="about-title"></h2>
+        </div>
+        <div class="about-panel" id="about-content"></div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Contact</p>
+          <h2 id="contact-title"></h2>
+          <p id="contact-intro"></p>
+        </div>
+        <div class="contact-layout">
+          <form class="contact-form" id="contact-form">
+            <input name="name" id="field-name" required>
+            <input type="email" name="email" id="field-email" required>
+            <input name="company" id="field-company">
+            <input name="website" id="field-website">
+            <select name="needType" id="field-needType"></select>
+            <select name="budget" id="field-budget"></select>
+            <input name="timeline" id="field-timeline">
+            <textarea name="message" id="field-message" rows="6" required></textarea>
+            <button class="button button--primary" type="submit" id="contact-submit"></button>
+          </form>
+          <aside class="contact-aside">
+            <p class="contact-aside__label" id="contact-direct-label"></p>
+            <a class="contact-email" href="mailto:rodolpheaivo@gmail.com" id="contact-email-link"></a>
+            <p class="contact-note" id="contact-note"></p>
+            <p class="contact-success" id="contact-success" hidden></p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p id="footer-note"></p>
+    </footer>
+  </div>
+
+  <script>
+    const content = {
+      fr: {
+        metaTitle: "Rodolphe Aïvo | Positioning, GTM & Fullstack Execution",
+        nav: [
+          ["Positionnement", "#positionnement"],
+          ["Niches", "#niches"],
+          ["Offres", "#offres"],
+          ["Portfolio", "#portfolio"],
+          ["Contact", "#contact"]
+        ],
+        hero: {
+          eyebrow: "Rodolphe Aïvo",
+          title: "Positionnement, GTM et exécution fullstack pour business B2B ambitieux",
+          subtitle: "Une façade stratégique claire. Une capacité réelle à concevoir et construire.",
+          description: "J’aide les startups B2B et les services premium à clarifier leur offre, renforcer leur conversion et transformer une intention business en système, page ou produit utilisable.",
+          primary: "Voir le portfolio",
+          secondary: "Déposer une demande",
+          metrics: ["2 niches principales", "FR / EN", "Stratégie + exécution"]
+        },
+        positioning: {
+          title: "Un profil hybride, mais lisible",
+          intro: "Le site ne présente pas un généraliste. Il montre un profil capable de diagnostiquer une friction business, de prioriser une réponse et d’exécuter proprement ce qui doit être construit.",
+          items: [
+            ["Clarté stratégique", "Je travaille le positionnement, l’offre, le message, l’ICP et les points de rupture du funnel avant de parler d’outils."],
+            ["Exécution fullstack", "Quand la réponse demande une landing page, une interface, une logique applicative ou une intégration, je peux aussi la construire."],
+            ["Orientation conversion", "Chaque mission est pensée pour faire gagner en lisibilité, en qualité de demande entrante ou en capacité de vente."]
+          ]
+        },
+        niches: {
+          title: "Deux niches principales",
+          intro: "Le cœur du positionnement repose sur deux terrains où la valeur perçue est forte et où le mélange stratégie + exécution prend du sens.",
+          items: [
+            {
+              title: "Startups B2B / SaaS early-stage",
+              audience: "Fondateurs, COO, growth leads, équipes produit en phase de clarification.",
+              pain: "Offre prometteuse mais message diffus, acquisition peu lisible, ou produit solide encore mal converti.",
+              focus: ["Positionnement", "GTM", "ICP", "Landing stratégique", "Produit ou site orienté conversion"]
+            },
+            {
+              title: "Agences et cabinets de services B2B premium",
+              audience: "Structures expertes qui ont besoin d’un meilleur niveau de perception et d’un pipeline plus qualifié.",
+              pain: "Expertise réelle, mais discours, offre ou funnel encore trop flous pour convertir au niveau voulu.",
+              focus: ["Offre", "Message", "Sales clarity", "Pages premium", "Preuves et actifs de crédibilité"]
+            }
+          ]
+        },
+        offers: {
+          title: "Offres d’entrée",
+          intro: "Les prix sont présentés en format “à partir de” pour garder une logique premium et laisser de la souplesse selon le niveau de cadrage.",
+          items: [
+            ["À partir de 400€", "Audit de positionnement", "Pour clarifier l’offre, le message, la cible et les frictions qui ralentissent la conversion.", ["Analyse du message", "Lecture de l’offre", "Hypothèses de correction", "Priorités immédiates"]],
+            ["À partir de 900€", "Sprint GTM & conversion", "Pour restructurer un angle marché, un funnel ou une séquence d’entrée plus crédible.", ["ICP", "Proposition de valeur", "Entrée funnel", "Séquence d’activation"]],
+            ["À partir de 1 500€", "Exécution fullstack stratégique", "Pour construire la page, l’interface ou le produit qui donne corps à la décision stratégique.", ["Landing ou site premium", "Prototype ou produit", "Implémentation front / back", "Livrable déployable"]]
+          ]
+        },
+        proof: {
+          title: "Ce qui fait la différence",
+          intro: "Les preuves ne reposent pas sur des adjectifs. Elles reposent sur la façon de découper un problème, de formuler une réponse et de livrer un support crédible.",
+          items: [
+            ["Lecture business", "Je cherche d’abord où la perception se casse: valeur mal formulée, ciblage trop large, friction dans le parcours ou manque de preuve."],
+            ["Niveau de finition", "Le design, la structure et le wording sont traités comme des leviers de crédibilité, pas comme de la décoration."],
+            ["Capacité à construire", "Quand une recommandation doit devenir une page, un composant ou un flux, elle ne reste pas théorique."]
+          ]
+        },
+        portfolio: {
+          title: "Études de cas sélectionnées",
+          intro: "Chaque cas montre une logique de lecture, une décision et une matérialisation visuelle ou technique de la solution.",
+          items: [
+            ["SaaS / GTM", "Startup B2B / SaaS", "Repositionnement d’un SaaS B2B en lancement", "Le produit était utile mais raconté de façon trop générique pour déclencher un pipeline qualifié.", "Refonte du message, hiérarchie de landing page, promesse plus nette et architecture d’entrée funnel.", "Une offre plus lisible, plus crédible et prête à convertir des prospects mieux qualifiés.", ["Messaging", "GTM", "Landing strategy", "React UI"]],
+            ["Premium / Offer", "Cabinet de services B2B", "Système de crédibilité pour cabinet B2B premium", "Expertise forte mais perception encore trop artisanale dans la présentation et les points d’entrée.", "Refonte de l’offre, structure narrative premium, nouvelles preuves visuelles et section de demande qualifiante.", "Un actif de vente plus propre pour soutenir des conversations à meilleur niveau.", ["Offer design", "Positioning", "Visual system", "Conversion flow"]],
+            ["FR / EN", "Mission hybride", "Landing page bilingue orientée conversion", "Besoin d’un support bilingue capable de parler à deux marchés sans perdre en niveau perçu.", "Architecture FR/EN, direction visuelle haut de gamme, CTA plus nets et lecture rapide du positionnement.", "Une présence plus sérieuse sur les marchés francophone et international.", ["React", "TypeScript", "Bilingual UX", "GitHub Pages"]]
+          ]
+        },
+        about: {
+          title: "À propos",
+          paragraphs: [
+            "Je travaille à l’intersection du positionnement, du go-to-market et de l’exécution produit. Ce croisement me permet de ne pas séparer artificiellement la réflexion du livrable.",
+            "Quand un site, une interface ou une expérience doit porter la valeur d’une offre, le niveau d’exécution compte autant que la qualité du diagnostic."
+          ]
+        },
+        contact: {
+          title: "Déposer une demande",
+          intro: "Décris brièvement le contexte, le besoin et le niveau d’urgence. Je privilégie les missions où l’enjeu business, le message ou la conversion doivent être clarifiés puis matérialisés.",
+          submit: "Déposer une demande",
+          direct: "Contact direct",
+          emailLabel: "Ou écrire directement à rodolpheaivo@gmail.com",
+          note: "Je privilégie les missions où la lecture du besoin et le niveau de sortie comptent autant que la technique.",
+          success: "Votre client mail va s’ouvrir avec les informations préremplies. Vous pouvez ensuite ajuster le message avant envoi.",
+          placeholders: ["Nom", "Email", "Entreprise ou projet", "Website / URL", "Délai souhaité", "Décris brièvement le besoin"],
+          types: ["Audit de positionnement", "Sprint GTM", "Landing page stratégique", "Produit ou app fullstack", "Mission hybride stratégie + exécution"],
+          budgets: ["À partir de 400€", "À partir de 900€", "À partir de 1 500€", "À définir"]
+        },
+        footer: "Portfolio bilingue conçu pour une lecture rapide, une perception premium et une conversion plus claire."
+      },
+      en: {
+        metaTitle: "Rodolphe Aïvo | Positioning, GTM & Fullstack Execution",
+        nav: [
+          ["Positioning", "#positionnement"],
+          ["Focus", "#niches"],
+          ["Offers", "#offres"],
+          ["Portfolio", "#portfolio"],
+          ["Contact", "#contact"]
+        ],
+        hero: {
+          eyebrow: "Rodolphe Aïvo",
+          title: "Positioning, GTM and fullstack execution for ambitious B2B businesses",
+          subtitle: "A clear strategic front. A real ability to design and build what the business needs.",
+          description: "I help B2B startups and premium service firms sharpen their offer, improve conversion and turn business intent into usable pages, systems and products.",
+          primary: "View portfolio",
+          secondary: "Submit a request",
+          metrics: ["2 core niches", "FR / EN", "Strategy + execution"]
+        },
+        positioning: {
+          title: "A hybrid profile, kept readable",
+          intro: "This is not a vague generalist profile. It is designed to show someone who can diagnose a business friction, prioritize a response and build the right digital layer around it.",
+          items: [
+            ["Strategic clarity", "I work on positioning, offer clarity, messaging, ICP and funnel friction before talking about tools."],
+            ["Fullstack execution", "When the answer requires a landing page, interface, application logic or integration, I can build it too."],
+            ["Conversion focus", "Each mission is framed around better clarity, better inbound quality and a stronger path to revenue."]
+          ]
+        },
+        niches: {
+          title: "Two core niches",
+          intro: "The positioning is anchored in two high-value B2B contexts where strategy and execution naturally reinforce each other.",
+          items: [
+            {
+              title: "Early-stage B2B startups / SaaS",
+              audience: "Founders, COO, growth leads and product teams entering a sharper go-to-market phase.",
+              pain: "The product may be valuable, but the message is too broad, acquisition too fuzzy, or conversion too weak.",
+              focus: ["Positioning", "GTM", "ICP", "Strategic landing pages", "Product-facing execution"]
+            },
+            {
+              title: "Premium B2B agencies and service firms",
+              audience: "Expert-led firms that need a cleaner perception and better qualified pipeline.",
+              pain: "Real expertise, but an offer, message or funnel that still undersells the true level of the business.",
+              focus: ["Offer clarity", "Messaging", "Sales clarity", "Premium pages", "Credibility assets"]
+            }
+          ]
+        },
+        offers: {
+          title: "Entry offers",
+          intro: "Pricing is shown in a “from” format to keep the positioning premium while leaving room for scope and complexity.",
+          items: [
+            ["From €400", "Positioning audit", "For teams that need a sharper offer, clearer message and better understanding of what slows conversion.", ["Message review", "Offer reading", "Correction hypotheses", "Immediate priorities"]],
+            ["From €900", "GTM & conversion sprint", "For businesses that need a cleaner market angle, sharper funnel and more credible activation path.", ["ICP", "Value proposition", "Funnel entry points", "Activation sequence"]],
+            ["From €1,500", "Strategic fullstack execution", "For building the page, interface or product layer that turns the strategy into a working asset.", ["Premium landing or site", "Prototype or product", "Front / back implementation", "Deployable delivery"]]
+          ]
+        },
+        proof: {
+          title: "What makes the work credible",
+          intro: "The proof does not rely on adjectives. It relies on how the problem is framed, how the response is prioritized and how the final asset is shaped.",
+          items: [
+            ["Business reading", "I first look at where perception breaks: weak value framing, broad targeting, funnel friction or missing proof."],
+            ["Execution quality", "Design, structure and wording are treated as credibility levers, not visual decoration."],
+            ["Ability to build", "When a recommendation must become a page, a component or a working flow, it does not stay theoretical."]
+          ]
+        },
+        portfolio: {
+          title: "Selected case studies",
+          intro: "Each case demonstrates a diagnosis, a decision path and a visual or technical materialization of the response.",
+          items: [
+            ["SaaS / GTM", "B2B Startup / SaaS", "Repositioning an early-stage B2B SaaS", "The product was useful, but the story was too generic to support qualified pipeline creation.", "Message rewrite, landing-page hierarchy, sharper promise and stronger funnel entry logic.", "A clearer and more credible offer, ready to convert better-fit prospects.", ["Messaging", "GTM", "Landing strategy", "React UI"]],
+            ["Premium / Offer", "Premium service firm", "Credibility system for a premium B2B firm", "Strong expertise, but a presentation layer that still felt too handcrafted for the level of service.", "Offer reframing, premium narrative structure, stronger visual proof and a qualifying request section.", "A cleaner sales asset supporting higher-level conversations.", ["Offer design", "Positioning", "Visual system", "Conversion flow"]],
+            ["FR / EN", "Hybrid mission", "Bilingual conversion-led portfolio experience", "A business presence had to speak to both francophone and international audiences without lowering perceived quality.", "FR/EN architecture, premium visual direction and a cleaner conversion path.", "A more serious presence across two markets with one coherent experience.", ["React", "TypeScript", "Bilingual UX", "GitHub Pages"]]
+          ]
+        },
+        about: {
+          title: "About",
+          paragraphs: [
+            "I work at the intersection of positioning, go-to-market thinking and product execution. That intersection keeps the thinking connected to the deliverable.",
+            "When a site, interface or experience has to carry the value of an offer, the level of execution matters as much as the quality of the diagnosis."
+          ]
+        },
+        contact: {
+          title: "Submit a request",
+          intro: "Briefly describe the context, the need and the timeline. I prioritize missions where business clarity, messaging or conversion need to be sharpened and then translated into a working asset.",
+          submit: "Submit a request",
+          direct: "Direct contact",
+          emailLabel: "Or write directly to rodolpheaivo@gmail.com",
+          note: "I prioritize missions where business clarity and delivery quality matter as much as the technical build.",
+          success: "Your mail client will open with the request already structured. You can still refine it before sending.",
+          placeholders: ["Name", "Email", "Company or project", "Website / URL", "Timeline", "Briefly describe the request"],
+          types: ["Positioning audit", "GTM sprint", "Strategic landing page", "Fullstack product or app", "Hybrid strategy + execution mission"],
+          budgets: ["From €400", "From €900", "From €1,500", "To be defined"]
+        },
+        footer: "Bilingual portfolio designed for fast reading, premium perception and stronger inbound quality."
+      }
+    };
+
+    const storageKey = "portfolio-locale";
+    const detectLocale = () => navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+    let locale = localStorage.getItem(storageKey);
+    if (locale !== "fr" && locale !== "en") locale = detectLocale();
+
+    const navList = document.getElementById("nav-list");
+    const heroMetrics = document.getElementById("hero-metrics");
+    const positioningGrid = document.getElementById("positioning-grid");
+    const nichesGrid = document.getElementById("niches-grid");
+    const offersGrid = document.getElementById("offers-grid");
+    const proofGrid = document.getElementById("proof-grid");
+    const portfolioGrid = document.getElementById("portfolio-grid");
+    const aboutContent = document.getElementById("about-content");
+
+    function render() {
+      const t = content[locale];
+      document.documentElement.lang = locale;
+      document.title = t.metaTitle;
+
+      document.getElementById("lang-fr").classList.toggle("active", locale === "fr");
+      document.getElementById("lang-en").classList.toggle("active", locale === "en");
+
+      navList.innerHTML = t.nav.map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join("");
+
+      document.getElementById("hero-eyebrow").textContent = t.hero.eyebrow;
+      document.getElementById("hero-title").textContent = t.hero.title;
+      document.getElementById("hero-subtitle").textContent = t.hero.subtitle;
+      document.getElementById("hero-description").textContent = t.hero.description;
+      document.getElementById("hero-primary").textContent = t.hero.primary;
+      document.getElementById("hero-secondary").textContent = t.hero.secondary;
+      heroMetrics.innerHTML = t.hero.metrics.map((item) => `<li>${item}</li>`).join("");
+
+      document.getElementById("positioning-title").textContent = t.positioning.title;
+      document.getElementById("positioning-intro").textContent = t.positioning.intro;
+      positioningGrid.innerHTML = t.positioning.items.map(([title, body]) => `
+        <article class="info-card">
+          <h3>${title}</h3>
+          <p>${body}</p>
+        </article>`).join("");
+
+      document.getElementById("niches-title").textContent = t.niches.title;
+      document.getElementById("niches-intro").textContent = t.niches.intro;
+      nichesGrid.innerHTML = t.niches.items.map((item) => `
+        <article class="niche-card">
+          <h3>${item.title}</h3>
+          <p class="niche-meta">${item.audience}</p>
+          <p>${item.pain}</p>
+          <ul class="niche-focus">${item.focus.map((f) => `<li>${f}</li>`).join("")}</ul>
+        </article>`).join("");
+
+      document.getElementById("offers-title").textContent = t.offers.title;
+      document.getElementById("offers-intro").textContent = t.offers.intro;
+      offersGrid.innerHTML = t.offers.items.map(([price, title, body, bullets]) => `
+        <article class="offer-card">
+          <p class="offer-price">${price}</p>
+          <h3>${title}</h3>
+          <p>${body}</p>
+          <ul class="offer-points">${bullets.map((b) => `<li>${b}</li>`).join("")}</ul>
+        </article>`).join("");
+
+      document.getElementById("proof-title").textContent = t.proof.title;
+      document.getElementById("proof-intro").textContent = t.proof.intro;
+      proofGrid.innerHTML = t.proof.items.map(([title, body]) => `
+        <article class="proof-item">
+          <h3>${title}</h3>
+          <p>${body}</p>
+        </article>`).join("");
+
+      document.getElementById("portfolio-title").textContent = t.portfolio.title;
+      document.getElementById("portfolio-intro").textContent = t.portfolio.intro;
+      portfolioGrid.innerHTML = t.portfolio.items.map(([visual, niche, title, problem, response, outcome, stack]) => `
+        <article class="case-card">
+          <div class="case-visual">
+            <div class="case-visual-grid"></div>
+            <span>${visual}</span>
+          </div>
+          <p class="case-niche">${niche}</p>
+          <h3>${title}</h3>
+          <p><strong>Problem.</strong> ${problem}</p>
+          <p><strong>Response.</strong> ${response}</p>
+          <p><strong>Outcome.</strong> ${outcome}</p>
+          <ul class="stack-list">${stack.map((s) => `<li>${s}</li>`).join("")}</ul>
+        </article>`).join("");
+
+      document.getElementById("about-title").textContent = t.about.title;
+      aboutContent.innerHTML = t.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join("");
+
+      document.getElementById("contact-title").textContent = t.contact.title;
+      document.getElementById("contact-intro").textContent = t.contact.intro;
+      document.getElementById("contact-submit").textContent = t.contact.submit;
+      document.getElementById("contact-direct-label").textContent = t.contact.direct;
+      document.getElementById("contact-email-link").textContent = t.contact.emailLabel;
+      document.getElementById("contact-note").textContent = t.contact.note;
+      document.getElementById("contact-success").textContent = t.contact.success;
+      document.getElementById("footer-note").textContent = t.footer;
+
+      const [namePh, emailPh, companyPh, websitePh, timelinePh, messagePh] = t.contact.placeholders;
+      document.getElementById("field-name").placeholder = namePh;
+      document.getElementById("field-email").placeholder = emailPh;
+      document.getElementById("field-company").placeholder = companyPh;
+      document.getElementById("field-website").placeholder = websitePh;
+      document.getElementById("field-timeline").placeholder = timelinePh;
+      document.getElementById("field-message").placeholder = messagePh;
+
+      document.getElementById("field-needType").innerHTML = t.contact.types.map((item) => `<option value="${item}">${item}</option>`).join("");
+      document.getElementById("field-budget").innerHTML = t.contact.budgets.map((item) => `<option value="${item}">${item}</option>`).join("");
+    }
+
+    document.getElementById("lang-fr").addEventListener("click", () => {
+      locale = "fr";
+      localStorage.setItem(storageKey, locale);
+      render();
+    });
+
+    document.getElementById("lang-en").addEventListener("click", () => {
+      locale = "en";
+      localStorage.setItem(storageKey, locale);
+      render();
+    });
+
+    document.getElementById("contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const t = content[locale].contact;
+      const form = new FormData(event.currentTarget);
+      const body = encodeURIComponent([
+        `Nom: ${form.get("name") || ""}`,
+        `Email: ${form.get("email") || ""}`,
+        `Entreprise: ${form.get("company") || ""}`,
+        `Site: ${form.get("website") || ""}`,
+        `Besoin: ${form.get("needType") || ""}`,
+        `Budget: ${form.get("budget") || ""}`,
+        `Délai: ${form.get("timeline") || ""}`,
+        "",
+        `${form.get("message") || ""}`
+      ].join("\n"));
+
+      const subject = encodeURIComponent(`[Portfolio] ${form.get("needType") || ""}`);
+      window.location.href = `mailto:rodolpheaivo@gmail.com?subject=${subject}&body=${body}`;
+      const success = document.getElementById("contact-success");
+      success.hidden = false;
+      success.textContent = t.success;
+    });
+
+    render();
+  </script>
 </body>
 </html>
